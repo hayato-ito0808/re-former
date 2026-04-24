@@ -1,12 +1,25 @@
 <%= form_with model: @user do |f| %>
-  <%= f.label :username, "名前：" %>
-  <%= f.text_field :username %>
+    <% if @user.errors.any? %>
+        <div>
+            <h2><%= @user.errors.count %>件のエラーがあります</h2>
+            <ul>
+                <% @user.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>    
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+    <%= f.label :username, "名前：" %>
+    <%= f.text_field :username %>
+    <br>
 
-  <%= f.label :email, "メールアドレス：" %>
-  <%= f.text_field :email %>
+    <%= f.label :email, "メールアドレス：" %>
+    <%= f.text_field :email %>
+    <br>
 
-  <%= f.label :password, "パスワード：" %>
-  <%= f.password_field :password %>
+    <%= f.label :password, "パスワード：" %>
+    <%= f.password_field :password %>
+    <br>
 
-  <%= f.submit "更新" %>
+    <%= f.submit "更新" %>
 <% end %>
